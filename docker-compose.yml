@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  web:
+    container_name: will_auto_complete_fe
+    ports:
+      - '3000:3000'
+    depends_on:
+      - api
+    build: ./will-auto-complete-fe
+    image: web:0.1
+  api:
+    container_name: will_auto_complete_be
+    ports:
+      - '8081:8081'
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/schoology?autoReconnect=true&useSSL=false
+    build: ./will-auto-complete-be
+    image: api:0.1
+  db:
+    container_name: will_auto_complete_db
+    image: mariadb:latest
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MYSQL_USER: wr_auto_complete
+      MYSQL_PASSWORD: dTCig19124
+      MYSQL_DATABASE: schoology
+    volumes:
+      - ./database:/tmp/database
+    command: mysqld --init-file="/tmp/database/init_db.sql"
+
+volumes:
+  db:
+

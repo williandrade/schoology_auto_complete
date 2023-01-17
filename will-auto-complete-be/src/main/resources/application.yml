@@ -1,0 +1,15 @@
+server:
+  port: 8081
+spring:
+  jpa:
+    database: MYSQL
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+        ddl-auto: none
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: wr_auto_complete
+    password: dTCig19124
+    url: jdbc:mysql://0.0.0.0:3306/schoology
